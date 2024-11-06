@@ -19,11 +19,16 @@ A aplicação
 ### Organização do projeto
 ```
 /
-├─📁 .devcontainer     ->  Configurações do devcontainer
-├─📁 .vscode           ->  Definições de ambiente para o VSCode
-├─📁 docs              ->  Artefatos para documentação do repo
-├─📁 src               ->  [Implementação]
-│ │ ├─🐍 playground.py              -> Entrypoint
+├─📁 .devcontainer     ->  [Configurações do devcontainer]
+├─📁 .vscode           ->  [Definições de ambiente para o VSCode]
+├─📁 docs              ->  [Artefatos para documentação do repo]
+├─📁 app               ->  [Implementação da aplicação]
+│ │ ├─🐍 startup.py              -> Entrypoint
+│ │ ├─📁 common        ->  [Funções auxiliares]
+│ │    ├─🐍 utils.py             -> Arquivos utils para aplicação
+│ │      ...
+│ │ ├─📁 resources     ->  [Contém as classes com as logicas da API]
+│ │    ├─🐍 todo.py              -> contêm a lógica das rotas para manipulação dos itens TODO
 │ │ ...
 ├─📄 .gitignore
 ├─📄 Makefile          ->  Automações para o ambiente

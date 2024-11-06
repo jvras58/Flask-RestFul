@@ -23,17 +23,4 @@ lint:
 	task format
 
 playground:
-	@poetry run python src/playground.py
-
-init:
-	@echo "Populando todos: "
-	curl -X PUT -d "data=Remember the milk" http://localhost:5000/todo1
-	@echo "-------------------------------------"
-	curl -X PUT -d "data=Change my brakepads" http://localhost:5000/todo2
-	@echo "-------------------------------------"
-	@echo "Listando todos: "
-	@echo "-------------------------------------"
-	curl -X GET http://localhost:5000/todo1
-	@echo "-------------------------------------"
-	curl -X GET http://localhost:5000/todo2
-	@echo "-------------------------------------"
+	@poetry run python app/startup.py
