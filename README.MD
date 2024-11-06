@@ -1,12 +1,12 @@
 ## 📖 Sobre o Projeto
-O projeto consiste 
+Este projeto é uma API desenvolvida com flask, focada no estudo e implementação dos princípios da RestFul. A documentação detalhada do que é a API pode ser encontrada [aqui](docs/docs.md).
 
 
 ## 🚀 Tecnologias e Ferramentas
+O projeto foi criado para aprimorar conhecimentos em python, explorando suas capacidades e integração com flask e dynaconf.
 
-A aplicação 
-
-## Stack do Projeto
+### Stack do Projeto
+Esta API simples utiliza python, uma linguagem multiparadigma, de tipagem dinâmica e forte, com gerenciamento automático de memória. O objetivo é demonstrar e aprender como estruturar um projeto seguindo os princípios da API RestFul.
 
 |  Lib      | Versão    |
 |-----------|-----------|
@@ -24,8 +24,12 @@ A aplicação
 ├─📁 docs              ->  [Artefatos para documentação do repo]
 ├─📁 app               ->  [Implementação da aplicação]
 │ │ ├─🐍 startup.py              -> Entrypoint
+│ │ ├─📁 config        ->  [configurações para aplicação]
+│ │ │  ├─🐍 utils.py             -> Arquivos utils para aplicação
+│ │      ...
 │ │ ├─📁 common        ->  [Funções auxiliares]
-│ │    ├─🐍 utils.py             -> Arquivos utils para aplicação
+│ │ │  ├─🐍 base.py             -> Arquivos de Inicialização para aplicação
+│ │ │  ├─🐍 settings.py         -> Módulo de configurações de logger
 │ │      ...
 │ │ ├─📁 resources     ->  [Contém as classes com as logicas da API]
 │ │    ├─🐍 todo.py              -> contêm a lógica das rotas para manipulação dos itens TODO
@@ -77,7 +81,7 @@ $> make venv
 
 #### Levantar a aplicação
 ```
-$> make playground
+$> make dev 
 ```
 
 #### Adcionar novas dependencias
