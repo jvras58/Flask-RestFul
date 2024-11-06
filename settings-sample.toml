@@ -1,0 +1,18 @@
+[default]
+APP_NAME = "project_default"
+DEBUG = false
+ENVIRONMENT = "production"
+LOG_LEVEL = "WARNING"
+CORS_HEADERS = "Content-Type"
+
+[development]
+APP_NAME = "project_development"
+DEBUG = true
+ENVIRONMENT = "development"
+LOG_LEVEL = "DEBUG"
+
+[production]
+APP_NAME = "project_production"
+DEBUG = false
+ENVIRONMENT = "production"
+LOG_LEVEL = "ERROR"

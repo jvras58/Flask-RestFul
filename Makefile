@@ -22,5 +22,8 @@ lint:
 	task lint \
 	task format
 
-playground:
-	@poetry run python app/startup.py
+dev:
+	export FLASK_APP=app/startup.py && export FLASK_ENV=development && flask run --debug
+
+prod:
+	export FLASK_APP=app/startup.py && export FLASK_ENV=production && flask run
