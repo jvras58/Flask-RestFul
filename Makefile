@@ -27,3 +27,6 @@ dev:
 
 prod:
 	export FLASK_APP=app/startup.py && export FLASK_ENV=production && flask run
+
+routes:
+	export FLASK_APP=app/startup.py && flask routes
