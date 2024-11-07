@@ -24,21 +24,22 @@ Esta API simples utiliza python, uma linguagem multiparadigma, de tipagem dinâm
 ├─📁 docs              ->  [Artefatos para documentação do repo]
 ├─📁 app               ->  [Implementação da aplicação]
 │ │ ├─🐍 startup.py              -> Entrypoint
-│ │ ├─📁 config        ->  [configurações para aplicação]
+│ │ ├─📁 commons        ->  [Funções Auxiliares]
 │ │ │  ├─🐍 utils.py             -> Arquivos utils para aplicação
 │ │      ...
-│ │ ├─📁 common        ->  [Funções auxiliares]
+│ │ ├─📁 config        ->  [configurações para aplicação]
 │ │ │  ├─🐍 base.py             -> Arquivos de Inicialização para aplicação
 │ │ │  ├─🐍 settings.py         -> Módulo de configurações de logger
 │ │      ...
 │ │ ├─📁 resources     ->  [Contém as classes com as logicas da API]
-│ │    ├─🐍 todo.py              -> contêm a lógica das rotas para manipulação dos itens TODO
+│ │    ├─🐍 todo.py              -> contêm a lógica de manipulação dos itens TODO
+│ │    ├─🐍 todo_router.py       -> contêm a lógica das rotas que define o Blueprint
 │ │ ...
 ├─📄 .gitignore
 ├─📄 Makefile          ->  Automações para o ambiente
 ├─📄 pyproject.toml    ->  Definições para o projeto
+├─📄 settings.toml     ->  Configurações do ambiente com o FlaskDynaconf
 ├─📄 README.MD
-
 ```
 
 ## Montando o ambiente
