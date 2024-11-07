@@ -15,6 +15,7 @@ todo_list_logic = TodoList()
 class TodoListResource(Resource):
     """Operações relacionadas a criação e listagem de TODOs."""
 
+    @api.marshal_with(todo_model)
     def get(self) -> list:
         """Obtém a lista de TODOs."""
         return todo_list_logic.get()
