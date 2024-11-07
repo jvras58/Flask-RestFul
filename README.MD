@@ -1,12 +1,12 @@
 ## 📖 Sobre o Projeto
-O projeto consiste 
+Este projeto é uma API desenvolvida com flask, focada no estudo e implementação dos princípios da RestFul. A documentação detalhada do que é a API pode ser encontrada [aqui](docs/docs.md).
 
 
 ## 🚀 Tecnologias e Ferramentas
+O projeto foi criado para aprimorar conhecimentos em python, explorando suas capacidades e integração com flask e dynaconf.
 
-A aplicação 
-
-## Stack do Projeto
+### Stack do Projeto
+Esta API simples utiliza python, uma linguagem multiparadigma, de tipagem dinâmica e forte, com gerenciamento automático de memória. O objetivo é demonstrar e aprender como estruturar um projeto seguindo os princípios da API RestFul.
 
 |  Lib      | Versão    |
 |-----------|-----------|
@@ -19,17 +19,28 @@ A aplicação
 ### Organização do projeto
 ```
 /
-├─📁 .devcontainer     ->  Configurações do devcontainer
-├─📁 .vscode           ->  Definições de ambiente para o VSCode
-├─📁 docs              ->  Artefatos para documentação do repo
-├─📁 src               ->  [Implementação]
-│ │ ├─🐍 playground.py              -> Entrypoint
+├─📁 .devcontainer     ->  [Configurações do devcontainer]
+├─📁 .vscode           ->  [Definições de ambiente para o VSCode]
+├─📁 docs              ->  [Artefatos para documentação do repo]
+├─📁 app               ->  [Implementação da aplicação]
+│ │ ├─🐍 startup.py              -> Entrypoint
+│ │ ├─📁 commons        ->  [Funções Auxiliares]
+│ │ │  ├─🐍 utils.py             -> Arquivos utils para aplicação
+│ │      ...
+│ │ ├─📁 config        ->  [configurações para aplicação]
+│ │ │  ├─🐍 base.py             -> Arquivos de Inicialização para aplicação
+│ │ │  ├─🐍 logger.py         -> Módulo de configurações de logger
+│ │ │  ├─🐍 config.py         -> Módulo de configuração do Flask.
+│ │      ...
+│ │ ├─📁 resources     ->  [Contém as classes com as logicas da API]
+│ │    ├─🐍 todo.py              -> contêm a lógica de manipulação dos itens TODO
+│ │    ├─🐍 todo_router.py       -> contêm a lógica das rotas que define o Blueprint
 │ │ ...
 ├─📄 .gitignore
 ├─📄 Makefile          ->  Automações para o ambiente
 ├─📄 pyproject.toml    ->  Definições para o projeto
+├─📄 settings.toml     ->  Configurações do ambiente com o FlaskDynaconf
 ├─📄 README.MD
-
 ```
 
 ## Montando o ambiente
@@ -72,7 +83,7 @@ $> make venv
 
 #### Levantar a aplicação
 ```
-$> make playground
+$> make dev 
 ```
 
 #### Adcionar novas dependencias
