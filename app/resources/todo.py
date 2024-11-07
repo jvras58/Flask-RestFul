@@ -1,6 +1,5 @@
-"""contêm a lógica das rotas para manipulação dos itens TODO."""
+"""Contém a lógica das rotas para manipulação dos itens TODO."""
 from common.utils import abort_if_todo_doesnt_exist, parser
-from flask_restful import Resource
 
 TODOS = {
     'todo1': {'task': 'build an API'},
@@ -9,8 +8,8 @@ TODOS = {
 }
 
 
-class Todo(Resource):
-    """Recurso para manipular um único item TODO."""
+class Todo:
+    """Lógica de manipulação de um único item TODO."""
 
     def get(self, todo_id: str) -> dict:
         """Obtém um item TODO."""
@@ -31,8 +30,8 @@ class Todo(Resource):
         return task, 201
 
 
-class TodoList(Resource):
-    """Recurso para manipular a lista de itens TODO."""
+class TodoList:
+    """Lógica de manipulação da lista de itens TODO."""
 
     def get(self) -> dict:
         """Obtém a lista de itens TODO."""
