@@ -1,6 +1,6 @@
 """Inicialização do app."""
 
-from config.logger import get_logger
+from config.settings import get_logger
 from dynaconf import FlaskDynaconf
 from flask import Flask
 from flask_cors import CORS
