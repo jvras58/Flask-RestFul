@@ -2,8 +2,9 @@
 
 from config.logger import get_logger
 from dynaconf import FlaskDynaconf
-from flask import Blueprint, Flask
+from flask import Flask
 from flask_cors import CORS
+from resources.todo_router import todo_bp
 
 
 def create_app(**config: str) -> Flask:
@@ -21,8 +22,6 @@ def create_app(**config: str) -> Flask:
     logger.info("Ambiente atual: %s", app.config['ENVIRONMENT'])
     logger.info("Aplicação inicializada com sucesso!")
 
-    # TODO (jvras): Criar um lugar melhor para isso:
-    todo_bp = Blueprint('todos', __name__, url_prefix='/todos')
     app.register_blueprint(todo_bp)
 
     return app

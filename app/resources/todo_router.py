@@ -1,21 +1,32 @@
 """Modulo que define o Blueprint para o resources `TODO` e configura o Swagger para as rotas."""
 
-from config.config import api
-from flask_restx import Resource
-from swagger import todo_model
+from flask import Blueprint
+from flask_restx import Api, Resource, fields
 
 from .todo import Todo, TodoList
+
+todo_bp = Blueprint('todos', __name__, url_prefix='/todos')
+api = Api(
+    todo_bp,
+    doc='/docs',
+    title="TODO API",
+    description="API para gerenciar TODOs",
+)
+
+todo_model = api.model('Todo', {
+    'task': fields.String(required=True, description='Descrição da tarefa'),
+})
+
 
 todo_ns = api.namespace('tasks', path='', description='Operações relacionadas aos TODOs')
 
 todo_logic = Todo()
 todo_list_logic = TodoList()
 
-@todo_ns.route('/', methods=['GET', 'POST'])
+@todo_ns.route('/')
 class TodoListResource(Resource):
     """Operações relacionadas a criação e listagem de TODOs."""
 
-    @api.marshal_with(todo_model)
     def get(self) -> list:
         """Obtém a lista de TODOs."""
         return todo_list_logic.get()
@@ -26,7 +37,7 @@ class TodoListResource(Resource):
         """Cria um novo TODO."""
         return todo_list_logic.post()
 
-@todo_ns.route('/<string:todo_id>', methods=['GET', 'DELETE','PUT'])
+@todo_ns.route('/<string:todo_id>')
 class TodoResource(Resource):
     """Operações relacionadas a um TODO específico."""
 

@@ -28,9 +28,8 @@ Esta API simples utiliza python, uma linguagem multiparadigma, de tipagem dinâm
 │ │ │  ├─🐍 utils.py             -> Arquivos utils para aplicação
 │ │      ...
 │ │ ├─📁 config        ->  [configurações para aplicação]
-│ │ │  ├─🐍 base.py             -> Arquivos de Inicialização para aplicação
-│ │ │  ├─🐍 logger.py         -> Módulo de configurações de logger
-│ │ │  ├─🐍 config.py         -> Módulo de configuração do Flask.
+│ │ │  ├─🐍 base.py              -> Arquivos de Inicialização para aplicação
+│ │ │  ├─🐍 logger.py            -> Módulo de configurações de logger
 │ │      ...
 │ │ ├─📁 resources     ->  [Contém as classes com as logicas da API]
 │ │    ├─🐍 todo.py              -> contêm a lógica de manipulação dos itens TODO
