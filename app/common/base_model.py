@@ -1,4 +1,4 @@
-"""Representa o modelo base para todos os modelos do aplicativo."""
+"""Represent the base model for all models in the application."""
 
 from dataclasses import dataclass
 
@@ -12,12 +12,12 @@ from sqlalchemy.sql import func
 
 
 class Base(DeclarativeBase):
-    """Modelo base para todos os modelos do aplicativo."""
+    """Base model for all models in the application."""
 
 
 @dataclass
-class AbstractBaseModel(Base):
-    """Modelo base auditável para todos os modelos do aplicativo."""
+class AbstractBaseModel:
+    """Auditable Base model for all models in the application."""
 
     __abstract__ = True
 
@@ -53,22 +53,22 @@ class AbstractBaseModel(Base):
     )
 
     def __init__(self, **kwargs: dict) -> None:
-        """Inicialize o modelo."""
+        """Initialize the model."""
         for attr, value in kwargs.items():
             setattr(self, attr, value)
 
     def get_updated_data(self, obj: 'AbstractBaseModel') -> None:
-        """Atualize o modelo com os novos dados."""
+        """Update the model with the new data."""
         for key, value in obj._as_dict().items():  # noqa: SLF001
             setattr(self, key, value)
 
     def _as_dict(self, jump_immutable_fields: bool = True) -> dict:
-        """Retorne o modelo como um dicionário. Excluindo atributos de auditoria.
+        """Return the model as a dictionary. Excludind audit attributes.
 
-        Este método é usado para serializar o modelo e prepará-lo para atualização
-        modelo.
+        This method is used to serialize the model to prepare it for update
+        model.
         """
-        # Esses campos são manipulados pelo banco de dados.
+        # This fields are handled by the database.
         immutable_fields = ['audit_created_at', 'audit_updated_at']
         return {
             attr.key: getattr(self, attr.key)
@@ -77,5 +77,5 @@ class AbstractBaseModel(Base):
         }
 
     def __repr__(self) -> str:
-        """Retornar a representação do modelo."""
+        """Return the model representation."""
         return f'<{self.__class__.__name__} {self.id}>'

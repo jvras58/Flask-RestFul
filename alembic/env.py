@@ -26,7 +26,7 @@ if config.config_file_name is not None:
 # LOADIND MODELS -----------
 
 sys.path.append('/workspace/app') # add the project root to the path
-from app.config.table_registry import table_registry
+
 # -----------------------------
 # Load all entities from the model package
 entities_directory = '/workspace/app/model'
@@ -35,16 +35,21 @@ files = os.listdir(entities_directory)
 modules = [f[:-3] for f in files if f.endswith('.py') and not f.startswith('__')]
 # Importa os modulos
 for module in modules:
-    module_path = f"model.{module}"
-    importlib.import_module(module_path)
+    module_path = f"app.model.{module}"
+    # try catch error on import module
+    try:
+        importlib.import_module(module_path)
+    except Exception as e:
+        print(f"Error importing module {module_path}.")
+        print(e)
     print(f"Module {module_path} imported.")
 # -----------------------------
-target_metadata = table_registry.metadata
 
-# other values from the config, defined by the needs of env.py,
-# can be acquired:
-# my_important_option = config.get_main_option("my_important_option")
-# ... etc.
+import time
+time.sleep(5)
+from app.config.table_registry import table_registry
+target_metadata = table_registry.metadata
+print('Tables registered:', table_registry.metadata.tables)
 
 
 def run_migrations_offline() -> None:

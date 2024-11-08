@@ -2,7 +2,11 @@
 
 from common.base_model import AbstractBaseModel
 from config.table_registry import table_registry
+
+# from config.table_registry import table_registry
 from sqlalchemy.orm import Mapped, mapped_column
+
+# table_registry = registry()
 
 
 @table_registry.mapped_as_dataclass
@@ -18,10 +22,18 @@ class Todo(AbstractBaseModel):
         autoincrement=True,
         comment='Identificador da task',
     )
-    task: Mapped[str] = mapped_column(name='str_task_description')
+    task: Mapped[str] = mapped_column(
+        name='str_task_description',
+        init=False,
+        comment='Descrição da task',
+    )
 
     def __init__(self, **kwargs: dict) -> None:
         """Initialize the model."""
         super().__init__(**kwargs)
         for attr, value in kwargs.items():
             setattr(self, attr, value)
+
+# Verifique se o table_registry foi atualizado
+print('Tables registered:', table_registry.metadata.tables)
+print('ID da instância de table_registry__:', id(table_registry))
