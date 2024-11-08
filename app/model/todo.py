@@ -6,13 +6,18 @@ from sqlalchemy.orm import Mapped, mapped_column
 
 
 @table_registry.mapped_as_dataclass
-class TodoModel(AbstractBaseModel):
+class Todo(AbstractBaseModel):
     """Representa a tabela Todo no banco de dados."""
 
     __tablename__ = 'todo'
-    __table_args__ = {'extend_existing': True}
 
-    id: Mapped[int] = mapped_column(primary_key=True, name='id')
+    id: Mapped[int] = mapped_column(
+        name='id',
+        primary_key=True,
+        init=False,
+        autoincrement=True,
+        comment='Identificador da task',
+    )
     task: Mapped[str] = mapped_column(name='str_task_description')
 
     def __init__(self, **kwargs: dict) -> None:
