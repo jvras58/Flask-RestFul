@@ -19,7 +19,6 @@
     "editor.foldingImportsByDefault": true,
     "files.exclude": {
         "**/__pycache__": true,
-        "**/__init__.py": true,
         "**/.cache": true,
         "**/.coverage": true,
         "**/.coverage.*": true,
