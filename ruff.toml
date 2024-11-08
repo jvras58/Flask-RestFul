@@ -43,6 +43,7 @@ indent-width = 4
 # McCabe complexity (`C901`) by default.
 select = ['ALL']
 ignore = [
+    'RUF012', #FIXME: MODELS: {'extend_existing': True}
     'E501',  #FIXME: line too long (Black should handle)
     'INP001',
     'ANN101',

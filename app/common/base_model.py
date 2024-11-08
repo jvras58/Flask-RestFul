@@ -1,3 +1,5 @@
+"""Módulo que contém a classe base para os modelos do sistema."""
+
 from dataclasses import dataclass
 from datetime import datetime
 
@@ -7,25 +9,20 @@ from sqlalchemy.sql import func
 
 
 class Base(DeclarativeBase):
-    """
-    Classe que representa qualque entidade no sistema.
-    """
-
-    pass
+    """Classe que representa qualque entidade no sistema."""
 
 
 @dataclass
 class AbstractBaseModel:
-    """
-    Classe abstrata que representa qualquer entidade que cinterá as propriedades base
-    para se auditada.
-    """
+    """Classe abstrata que representa um modelo genérico no sistema."""
 
     __abstract__ = True
 
     audit_user_ip: Mapped[str] = mapped_column(String(16), name='audit_user_ip')
     audit_created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), server_default=func.now(), name='audit_created_at'
+        DateTime(timezone=True),
+        server_default=func.now(),
+        name='audit_created_at',
     )
     audit_updated_on: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),

@@ -1,8 +1,9 @@
 """Módulo de modelos de dados da tabela TODO."""
 
 from common.base_model import AbstractBaseModel
-from sqlalchemy.orm import Mapped, mapped_column
 from config.table_registry import table_registry
+from sqlalchemy.orm import Mapped, mapped_column
+
 
 @table_registry.mapped_as_dataclass
 class TodoModel(AbstractBaseModel):

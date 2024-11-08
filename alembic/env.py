@@ -27,7 +27,7 @@ if config.config_file_name is not None:
 
 from app.common.base_model import Base
 
-sys.path.append('/workspace/app') # add the project root to the path
+sys.path.append('/workspace/app')
 # -----------------------------
 # Load all entities from the model package
 entities_directory = '/workspace/app/models'
