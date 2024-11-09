@@ -35,7 +35,7 @@ class Todo:
                 abort_if_todo_doesnt_exist(todo_id)
             todo.task = args['task']
             session.commit()
-            return {'task': todo.task}, 201
+            return {'task': todo.task}, 200
 
 
 class TodoList:

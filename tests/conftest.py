@@ -1,52 +1,10 @@
+import os
 import pytest
 from sqlalchemy import Engine, create_engine, event
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.pool import StaticPool
-
-from app.database.session import get_session, Base
-from app.startup import app
-
-@pytest.fixture
-def client(session):
-    """
-    Contexto de webclient para teste de APIRest com Flask.
-
-    Returns:
-        FlaskClient: Uma instancia de FlaskClient.
-    """
-
-    def get_session_override():
-        return session
-
-    app.config['TESTING'] = True
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-    with app.test_client() as client:
-        app.dependency_overrides[get_session] = get_session_override
-        yield client
-
-    app.dependency_overrides.clear()
-
-@pytest.fixture
-def session():
-    """
-    Contexto de Session para teste de estrutura de banco de dados.
-
-    Yields:
-        Session: Uma instancia de Session do SQLAlchemy
-    """
-    engine = create_engine(
-        'sqlite:///:memory:',
-        connect_args={'check_same_thread': False},
-        poolclass=StaticPool,
-        # echo=True,
-    )
-
-    Session = sessionmaker(bind=engine)
-    Base.metadata.create_all(engine)
-    yield Session()
-    Base.metadata.drop_all(engine)
+from app.database.session import Base
+from app.startup import create_app
 
 @event.listens_for(Engine, 'connect')
 def set_sqlite_pragma(dbapi_connection, connection_record):
@@ -60,3 +18,53 @@ def set_sqlite_pragma(dbapi_connection, connection_record):
     cursor = dbapi_connection.cursor()
     cursor.execute('PRAGMA foreign_keys=ON')
     cursor.close()
+
+
+@pytest.fixture
+def app_testing():
+    """
+    Configura o ambiente de teste para a aplicação Flask.
+
+    - Define o ambiente de teste.
+    - Cria a aplicação com configuração de teste e um banco SQLite em memória.
+    - Cria as tabelas no banco de dados.
+    """
+    os.environ["FLASK_ENV"] = "testing"
+    app = create_app(TESTING=True, SQLALCHEMY_DATABASE_URI='sqlite:///:memory:')
+    
+    with app.app_context():
+        engine = create_engine('sqlite:///:memory:', connect_args={"check_same_thread": False}, poolclass=StaticPool)
+        Base.metadata.create_all(engine)
+
+    yield app
+
+    with app.app_context():
+        Base.metadata.drop_all(engine)
+
+
+@pytest.fixture
+def client(app_testing):
+    """
+    Fornece um cliente de teste para a aplicação Flask.
+    """
+    return app_testing.test_client()
+
+@pytest.fixture
+def session():
+    """
+    Contexto de Session para teste de estrutura de banco de dados.
+
+    Yields:
+        Session: Uma instancia de Session do SQLAlchemy
+    """
+    engine = create_engine(
+        'sqlite:///:memory:',
+        connect_args={'check_same_thread': False},
+        poolclass=StaticPool,
+        echo=True,
+    )
+
+    Session = sessionmaker(bind=engine)
+    Base.metadata.create_all(engine)
+    yield Session()
+    Base.metadata.drop_all(engine)
