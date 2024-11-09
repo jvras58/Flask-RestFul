@@ -2,13 +2,11 @@
 
 from config.settings import get_logger
 from database.session import engine
+from database.migrate import migrate
 from dynaconf import FlaskDynaconf
 from flask import Flask
 from flask_cors import CORS
-from flask_migrate import Migrate
 from resources.todo_router import todo_bp
-
-migrate = Migrate()
 
 def create_app(**config: str) -> Flask:
     """Configuração do CORS e carregamento das extensões."""

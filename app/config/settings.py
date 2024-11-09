@@ -25,9 +25,9 @@ def build_logger(log_level: str, environment: str) -> Logger:
     datefmt_str = '[%X]' if environment == 'development' else '[%Y-%m-%d %X]'
     logging.basicConfig(
         level=getattr(logging, log_level.upper(), logging.DEBUG),
-        format='%(message)s',
+        format='%(asctime)s %(levelname)-8s %(message)s',
         datefmt=datefmt_str,
-        handlers=[RichHandler()],
+        handlers=[RichHandler(rich_tracebacks=True)],
     )
     return logging.getLogger()
 
