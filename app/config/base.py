@@ -1,6 +1,6 @@
-"""Inicialização do app."""
+# base.py
 
-from config.settings import get_logger
+from config.settings import get_logger, log_response
 from database.session import engine
 from database.migrate import migrate
 from dynaconf import FlaskDynaconf
@@ -24,6 +24,8 @@ def create_app(**config: str) -> Flask:
         logger.info("Rota: %s -> Endpoint: %s", rule, rule.endpoint)
     logger.info("Ambiente atual: %s", app.config['ENVIRONMENT'])
     logger.info("Aplicação inicializada com sucesso!")
+
+    app.after_request(log_response)
 
     app.register_blueprint(todo_bp)
 
