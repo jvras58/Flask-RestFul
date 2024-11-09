@@ -22,15 +22,22 @@ Esta API simples utiliza python, uma linguagem multiparadigma, de tipagem dinâm
 ├─📁 .devcontainer     ->  [Configurações do devcontainer]
 ├─📁 .vscode           ->  [Definições de ambiente para o VSCode]
 ├─📁 docs              ->  [Artefatos para documentação do repo]
+├─📁 migrations        ->  [Artefatos de gerenciamento do banco de dados com o alembic]
 ├─📁 app               ->  [Implementação da aplicação]
 │ │ ├─🐍 startup.py              -> Entrypoint
 │ │ ├─📁 commons        ->  [Funções Auxiliares]
 │ │ │  ├─🐍 utils.py             -> Arquivos utils para aplicação
-│ │      ...
+│ │ │    ...
 │ │ ├─📁 config        ->  [configurações para aplicação]
 │ │ │  ├─🐍 base.py              -> Arquivos de Inicialização para aplicação
-│ │ │  ├─🐍 logger.py            -> Módulo de configurações de logger
-│ │      ...
+│ │ │  ├─🐍 settings.py            -> Módulo de configurações do sistema
+│ │ │    ...
+│ │ ├─📁 database      ->  [configurações para o banco de dados]
+│ │ │  ├─🐍 session.py              -> Módulo para gerenciar a sessão do banco de dados
+│ │ │    ...
+│ │ ├─📁 models        ->  [Modelos para o banco de dados]
+│ │ │  ├─🐍 todo.py              -> Módulo para modelo Todo
+│ │ │    ...
 │ │ ├─📁 resources     ->  [Contém as classes com as logicas da API]
 │ │    ├─🐍 todo.py              -> contêm a lógica de manipulação dos itens TODO
 │ │    ├─🐍 todo_router.py       -> contêm a lógica das rotas que define o Blueprint
@@ -80,6 +87,11 @@ $> make venv
 
 ### Principais comandos:
 
+### iniciar banco:
+```
+$> make upgrade 
+```
+
 #### Levantar a aplicação
 ```
 $> make dev 
@@ -93,3 +105,6 @@ $> poetry add <<nome_da_lib>>
 # Adicionar uma nova lib para o ambiente de desenvolvimento
 $> poetry add <<nome_da_lib>> --group dev
 ```
+
+### Alguns comandos interessantes no Makefile se precisar:
+Para ver todos os comandos disponíveis no Makefile, clique [aqui](Makefile).

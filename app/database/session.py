@@ -2,10 +2,17 @@
 
 from config.settings import get_settings
 from sqlalchemy import create_engine
-from sqlalchemy.orm import scoped_session, sessionmaker
+from sqlalchemy.orm import (
+    DeclarativeBase,
+    scoped_session,
+    sessionmaker,
+)
+
+
+class Base(DeclarativeBase):
+    """Classe base para os modelos do banco de dados."""
 
 engine = create_engine(get_settings().DB_URL)
-
 session_factory = sessionmaker(bind=engine)
 Session = scoped_session(session_factory)
 

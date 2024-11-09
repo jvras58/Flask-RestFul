@@ -1,11 +1,14 @@
 """Inicialização do app."""
 
 from config.settings import get_logger
+from database.session import engine
 from dynaconf import FlaskDynaconf
 from flask import Flask
 from flask_cors import CORS
+from flask_migrate import Migrate
 from resources.todo_router import todo_bp
 
+migrate = Migrate()
 
 def create_app(**config: str) -> Flask:
     """Configuração do CORS e carregamento das extensões."""
@@ -13,8 +16,10 @@ def create_app(**config: str) -> Flask:
 
     FlaskDynaconf(app, settings_files=["settings.toml"])
     app.config.update(config)
+
     CORS(app)
 
+    migrate.init_app(app, engine, render_as_batch=True)
 
     logger = get_logger(app.config['LOG_LEVEL'], app.config['ENVIRONMENT'])
     for rule in app.url_map.iter_rules():
