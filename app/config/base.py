@@ -1,4 +1,4 @@
-# base.py
+"""Modulo base para configuração da aplicação."""
 
 from config.settings import get_logger, log_response
 from database.session import engine
