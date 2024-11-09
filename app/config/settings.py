@@ -18,6 +18,8 @@ class Settings(BaseSettings):
     )
 
     DB_URL: str
+    LOG_LEVEL: str = 'DEBUG'
+    ENVIRONMENT: str = 'development'
 
 
 def build_logger(log_level: str, environment: str) -> Logger:
