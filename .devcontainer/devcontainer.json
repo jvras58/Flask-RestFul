@@ -10,7 +10,12 @@
                 "oderwat.indent-rainbow",
                 "charliermarsh.ruff",
                 "tamasfe.even-better-toml",
-                "humao.rest-client"
+                "humao.rest-client",
+                "qwtel.sqlite-viewer",
+                "formulahendry.code-runner",
+                "mhutchie.git-graph",
+                "ms-python.isort",
+                "Gruntfuggly.todo-tree"
             ]
         }
     },
