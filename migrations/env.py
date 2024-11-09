@@ -13,7 +13,6 @@ fileConfig(config.config_file_name)
 logger = logging.getLogger('alembic.env')
 
 from app.database.session import Base
-from app.models import todo  # noqa
 
 target_metadata = Base.metadata
 

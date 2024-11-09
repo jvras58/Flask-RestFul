@@ -1,10 +1,14 @@
 """Arquivos utils para aplicação."""
 from flask_restful import abort, reqparse
+from database.session import get_session
+from models.todo import TodoItem as TodoModel
 
 parser = reqparse.RequestParser()
 parser.add_argument('task')
 
-def abort_if_todo_doesnt_exist(todo_id: str, todos: dict) -> None:
+def abort_if_todo_doesnt_exist(todo_id: int) -> None:
     """Aborta a requisição se o item TODO não existir."""
-    if todo_id not in todos:
-        abort(404, message=f"Todo {todo_id} doesn't exist")
+    with get_session() as session:
+        todo = session.query(TodoModel).filter_by(id=todo_id).first()
+        if not todo:
+            abort(404, message=f"Todo {todo_id} doesn't exist")

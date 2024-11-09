@@ -10,5 +10,5 @@ class TodoItem(Base):
 
     __tablename__ = 'todo_items'
     id: Mapped[int] = mapped_column(Integer, primary_key=True)
-    description: Mapped[str] = mapped_column(String, nullable=False)
+    task: Mapped[str] = mapped_column(String, nullable=False)
     completed: Mapped[int] = mapped_column(Integer, default=0)

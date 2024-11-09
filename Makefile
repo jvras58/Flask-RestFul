@@ -46,7 +46,7 @@ routes:
 
 migrate:
 	@read -p "Mensagem da migração: " msg ; \
-	export PYTHONPATH=/workspace && export FLASK_APP=app/startup.py && flask db migrate -m "$(msg)"
+	export PYTHONPATH=/workspace && export FLASK_APP=app/startup.py && flask db migrate -m "$$msg"
 
 upgrade:
 	@echo "Deseja realmente aplicar a ultima migração? (y/n)"
