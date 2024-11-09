@@ -1,7 +1,7 @@
 """Arquivos utils para aplicação."""
 from flask_restful import abort, reqparse
-from database.session import get_session
-from models.todo import TodoItem as TodoModel
+from app.database.session import get_session
+from app.models.todo import TodoItem as TodoModel
 
 parser = reqparse.RequestParser()
 parser.add_argument('task')

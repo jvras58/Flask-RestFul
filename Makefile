@@ -25,7 +25,7 @@ lint:
 dev:
 	@echo "Iniciando servidor em modo de desenvolvimento"
 	@echo "-------------------------------------"
-	export FLASK_APP=app/startup.py && export FLASK_ENV=development && flask run --debug
+	export PYTHONPATH=/workspace && export FLASK_APP=app/startup.py && export FLASK_ENV=development && flask run --debug
 	@echo "-------------------------------------"
 	@echo "Servidor iniciado com sucesso"
 
@@ -73,4 +73,7 @@ init-db:
 	@echo "Banco de dados iniciado com sucesso"
 	@echo "Iniciando banco de dados "
 
+test:
+	@echo "Iniciando os Testes:"
+	export PYTHONPATH=/workspace export FLASK_APP=app/startup.py && FLASK_ENV=testing && pytest
 	

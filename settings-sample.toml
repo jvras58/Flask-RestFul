@@ -16,3 +16,9 @@ APP_NAME = "project_production"
 DEBUG = false
 ENVIRONMENT = "production"
 LOG_LEVEL = "ERROR"
+
+[testing]
+APP_NAME = "project_development"
+DEBUG = true
+ENVIRONMENT = "development"
+LOG_LEVEL = "DEBUG"

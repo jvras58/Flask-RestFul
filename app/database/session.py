@@ -1,6 +1,6 @@
 """Módulo para gerenciar a sessão do banco de dados."""
 
-from config.settings import get_settings
+from app.config.settings import get_settings
 from sqlalchemy import create_engine
 from sqlalchemy.orm import (
     DeclarativeBase,

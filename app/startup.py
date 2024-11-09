@@ -1,6 +1,6 @@
 """Entrypoint de aplicação."""
 
-from config.base import create_app
+from app.config.base import create_app
 
 app = create_app()
 

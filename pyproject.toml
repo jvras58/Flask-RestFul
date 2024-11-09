@@ -16,6 +16,9 @@ rich = "^13.9.4"
 flask-restx = "^1.3.0"
 flask-migrate = "^4.0.7"
 flask-sqlalchemy = "^3.1.1"
+pytest = "^8.3.3"
+factory-boy = "^3.3.1"
+mock = "^5.1.0"
 
 
 
@@ -26,6 +29,15 @@ ruff = "^0.5.5"
 line-length = 79
 extend-exclude = ['migrations']
 
+[tool.blue]
+extend-exclude = '(migrations/)'
+line_length = 88
+
+[tool.pytest.ini_options]
+pythonpath = "."
+addopts = '-p no:warnings'
+
+
 [tool.ruff.lint]
 preview = true
 select = ['I', 'F', 'E', 'W', 'PL', 'PT']
@@ -33,10 +45,6 @@ select = ['I', 'F', 'E', 'W', 'PL', 'PT']
 [tool.ruff.format]
 preview = true
 quote-style = 'single'
-
-[tool.pytest.ini_options]
-pythonpath = "."
-addopts = '-p no:warnings'
 
 [tool.taskipy.tasks]
 lint = 'ruff check . && ruff check . --diff'

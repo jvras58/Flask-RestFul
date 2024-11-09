@@ -1,12 +1,12 @@
 """Modulo base para configuração da aplicação."""
 
-from config.settings import get_logger, log_response
-from database.session import engine
-from database.migrate import migrate
+from app.config.settings import get_logger, log_response
+from app.database.session import engine
+from app.database.migrate import migrate
 from dynaconf import FlaskDynaconf
 from flask import Flask
 from flask_cors import CORS
-from resources.todo_router import todo_bp
+from app.resources.todo_router import todo_bp
 
 def create_app(**config: str) -> Flask:
     """Configuração do CORS e carregamento das extensões."""
