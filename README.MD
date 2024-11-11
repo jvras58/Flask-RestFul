@@ -21,6 +21,7 @@ Esta API simples utiliza python, uma linguagem multiparadigma, de tipagem dinâm
 /
 ├─📁 .devcontainer     ->  [Configurações do devcontainer]
 ├─📁 .vscode           ->  [Definições de ambiente para o VSCode]
+├─📁 .secrets          ->  [Repo para artefatos de segredos da app]
 ├─📁 docs              ->  [Artefatos para documentação do repo]
 ├─📁 migrations        ->  [Artefatos de gerenciamento do banco de dados com o alembic]
 ├─📁 app               ->  [Implementação da aplicação]

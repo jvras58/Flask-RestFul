@@ -40,7 +40,7 @@ prod:
 routes:
 	@echo "Listando rotas"
 	@echo "-------------------------------------"
-	export FLASK_APP=app/startup.py && flask routes
+	export PYTHONPATH=/workspace && export FLASK_APP=app/startup.py && flask routes
 	@echo "-------------------------------------"
 	@echo "Rotas listadas com sucesso"
 

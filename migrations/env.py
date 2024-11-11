@@ -12,7 +12,12 @@ config = context.config
 fileConfig(config.config_file_name)
 logger = logging.getLogger('alembic.env')
 
+# Configuração BASE:
 from app.database.session import Base
+
+
+# IMPORT MODELS:
+from app.models.todo import TodoItem
 
 target_metadata = Base.metadata
 
