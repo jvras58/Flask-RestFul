@@ -1,8 +1,7 @@
 """Contém a lógica das rotas para manipulação dos itens TODO."""
+from app.common.utils import abort_if_todo_doesnt_exist, parser
 from app.database.session import get_session
 from app.models.todo import TodoItem as TodoModel
-from app.common.utils import abort_if_todo_doesnt_exist, parser
-
 
 
 class Todo:

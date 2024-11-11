@@ -1,7 +1,10 @@
+"""Módulo responsável por definir as rotas relacionadas aos TODOs."""
+
 from flask import Blueprint
-from flask_restx import Resource, fields, Namespace
-from app.resources.todo import Todo, TodoList
+from flask_restx import Namespace, Resource, fields
+
 from app.common.swagger import api
+from app.resources.todo import Todo, TodoList
 
 todo_bp = Blueprint('todos', __name__, url_prefix='/todos')
 

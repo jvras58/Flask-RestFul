@@ -1,17 +1,18 @@
-# tests/test_routes.py
+"""Testes para as rotas da API."""
+
 from app.models.todo import TodoItem
 
 
 def test_get_todo_list_empty(client):
     """Testa a obtenção da lista de TODOs quando está vazia."""
-    response = client.get('/todos/tasks/')
+    response = client.get('/tasks/')
     assert response.status_code == 200
     assert response.json == {}
 
 
 def test_post_todo_item(client):
     """Testa a criação de um novo item TODO via API."""
-    response = client.post('/todos/tasks/', json={'task': 'Nova tarefa'})
+    response = client.post('/tasks/', json={'task': 'Nova tarefa'})
     assert response.status_code == 201
     assert response.json['task'] == 'Nova tarefa'
 
@@ -26,7 +27,7 @@ def test_get_todo_item(client, session):
     session.add(todo)
     session.commit()
 
-    response = client.get(f'/todos/tasks/{todo.id}')
+    response = client.get(f'/tasks/{todo.id}')
     assert response.status_code == 200
     assert response.json['task'] == "Nova tarefa"
 
@@ -38,7 +39,7 @@ def test_update_todo_item(client, session):
     session.add(todo)
     session.commit()
 
-    response = client.put(f'/todos/tasks/{todo.id}', json={'task': 'Tarefa atualizada'})
+    response = client.put(f'/tasks/{todo.id}', json={'task': 'Tarefa atualizada'})
     assert response.status_code == 200
     assert response.json['task'] == 'Tarefa atualizada'
 
